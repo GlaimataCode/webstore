@@ -1,6 +1,6 @@
 <div class="gap-2 my-5">
     <div class="flex items-center">
-        <div x-data="{ quantity: @entangle('qantity') }" class="flex gap-2 items-centerm y-5">
+        <div x-data="{ quantity: @entangle('quantity') }" class="flex gap-2 items-centerm y-5">
             <div
                 class="inline-block px-3 py-2 bg-white border border-gray-200 rounded-lg dark:bg-neutral-900 dark:border-neutral-700">
                 <div class="flex items-center gap-x-1.5">
