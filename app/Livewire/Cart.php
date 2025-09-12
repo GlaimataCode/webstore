@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Actions\ValidateCartStock;
 use App\Contract\CartServiceInterface;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -24,6 +25,15 @@ class Cart extends Component
    {
     return $cart->all()->items->toCollection();
    }
+
+public function checkout()
+{
+        try{
+            ValidateCartStock::run();
+
+
+        }
+}
 
     public function render()
     {
