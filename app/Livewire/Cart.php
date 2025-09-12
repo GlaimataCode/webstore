@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Actions\ValidateCartStock;
 use App\Contract\CartServiceInterface;
 use Illuminate\Support\Collection;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class Cart extends Component
@@ -31,7 +32,10 @@ public function checkout()
         try{
             ValidateCartStock::run();
 
-
+            return redirect()->route('checkout');
+        }catch(ValidationException $e){
+            session()->flash('error', $e->getMessage());
+            return redirect()->route('cart');
         }
 }
 
