@@ -54,7 +54,7 @@
             </div>
             <div class="col-span-1 md:col-span-7">
                 <div class="flex items-center justify-between gap-5">
-                    <div class="font-light text-gray-800">Results: {{ ($product) ? $products->total() : 0 }} Items
+                    <div class="font-light text-gray-800">Results: {{ ($products) ? $products->total() : 0 }} Items
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="flex flex-col items-end text-sm font-light text-gray-800 dark:text-neutral-200">
