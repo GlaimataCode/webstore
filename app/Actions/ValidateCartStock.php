@@ -24,13 +24,14 @@ public function handle()
     $insufficient = [];
 
     foreach($this->cart->all()->items as $item) {
-                    /* @var ProductData $product  */
+                    /**  @var ProductData $product  */
+
         $product = $item->product();
 
         if (!$product || $product->stock < $item->quantity) {
             $insufficient[] = [
                 'sku'=> $product->sku ?? $item->sku,
-                'name'=> $product->name ?? 'Unknown',
+                'name'=> $product->name ?? "Unknown",
                 'requested'=>$item->quantity,
                 'available'=>$product?->stock ?? 0,
             ];

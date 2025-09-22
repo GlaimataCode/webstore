@@ -39,6 +39,7 @@ public function checkout()
         }
 }
 
+
     public function render()
     {
         return view('livewire.cart', [
