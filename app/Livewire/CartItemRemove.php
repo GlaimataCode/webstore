@@ -10,7 +10,7 @@ use App\Services\CartService;
 class CartItemRemove extends Component
 {
 
-    public string$sku;
+    public string $sku;
 
     public function mount(ProductData $product){
         $this->sku = $product->sku;

@@ -1,4 +1,4 @@
-@props(['title' => 'Title Section', 'url' => '#', 'products' => collect()])
+@props(['title' => 'Title Section', 'url' => '#', 'products' => []])
 <!-- Title -->
 <div class="max-w-2xl mx-auto text-center">
     <h2 class="text-xl font-bold md:text-2xl md:leading-tight dark:text-white">{{ $title }}</h2>
@@ -8,13 +8,13 @@
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 mx-auto">
     <!-- Grid -->
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        @forelse ($products->take(3) as $product)
+        @foreach ($products as $product )
             <x-single-product-card :product="$product" />
-        @empty
-            <div class="col-span-full text-center py-10">
+        @endforeach
+            {{-- <div class="col-span-full text-center py-10">
                 <p class="text-gray-500">No products available</p>
             </div>
-        @endforelse
+        @endforeach --}}
     </div>
     <div class="flex justify-center w-full mt-5">
         <a href="{{ $url }}" class="flex items-center text-gray-700">
