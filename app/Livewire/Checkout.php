@@ -36,6 +36,17 @@ class Checkout extends Component
             $this->calculateTotal();
         }
 
+
+        public function rules()
+            {
+                return [
+                    'data.full_name' => ['required', 'min:3', 'max:255'],
+                    'data.email' => ['required', 'email', 'max:255'],
+                    'data.phone' => ['required', 'min:8', 'max:14'],
+                    'data.shipping_line' => ['required', 'min:10', 'max:255'],
+                ];
+            }
+
         public function calculateTotal()
         {
             data_set($this->summaries, 'sub_total', $this->cart->total);
@@ -53,6 +64,16 @@ class Checkout extends Component
         public function getCartProperty(): CartData
         {
             return app(CartServiceInterface::class)->all();
+        }
+
+        public function placeAnOrder()
+        {
+            $this->validate();
+
+
+            dd($this->data);
+
+
         }
 
 

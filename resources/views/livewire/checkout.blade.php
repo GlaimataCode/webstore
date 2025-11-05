@@ -10,17 +10,29 @@
 
                     <div class="grid grid-cols-2 gap-3 mt-2">
                         <div class="col-span-2">
-                            <input id="af-payment-billing-contact" type="text" class="border-red-600 py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Full Name">
+                            <input id="af-payment-billing-contact" wire:model="data.full_name" type=" text" class="@error('data.full_name') border-red-600 @enderror py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Full Name">
+                            @error('data.full_name')
                             <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
-                                Customer Name Error Message</p>
+                                {{ $message }}</p>
+                            @enderror
                         </div>
                         <div>
-                            <input type="text" class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Email">
+                            <input type="text" wire:model="data.email" type=" text" class="@error('data.email') border-red-600 @enderror py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Email">
+                            @error('data.email')
+                            <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
+                                {{ $message }}</p>
+                            @enderror
+
+
                         </div>
                         <div>
-                            <input type="text" class="border-red-600 py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Phone Number">
+                            <input type="text" wire:model="data.phone" type=" text" class="@error('data.phone') border-red-600 @enderror py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Phone Number">
+
+                            @error('data.phone')
                             <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
-                                Phone Error Message</p>
+                                {{ $message }}</p>
+                            @enderror
+
                         </div>
                     </div>
                 </div>
@@ -31,9 +43,14 @@
                     </label>
 
                     <div class="mt-2 space-y-3">
-                        <input id="af-payment-billing-address" type="text" class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Street Address">
-                        <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">Street Address Error
-                            Message</p>
+                        <input id="af-payment-billing-address" type="text" wire:model="data.shipping_line" type=" text" class="@error('data.shipping_line') border-red-600 @enderror py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Street Address">
+
+                        @error('data.shipping_line')
+
+                        <p class="mt-2 text-xs text-red-600" id="hs-validation-name-error-helper">
+                            {{ $message }}</p>
+                        @enderror
+
                         <div>
                             <div x-data="{ open: false }" class="relative w-full">
                                 <input type="text" @focus="open = true" @click.outside="open = false" class="py-1.5 sm:py-2 px-3 pe-11 block w-full border-gray-200 shadow-2xs sm:text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Cari Lokasi">
@@ -89,14 +106,7 @@
                     <div class="grid space-y-2">
                         @php
                         $payment_methods = [
-                        'Bank Transfer - BCA',
-                        'Bank Transfer - BNI',
-                        'Virtual Account BCA',
-                        'QRIS',
-                        'Dana',
-                        ];
-                        @endphp
-                        @foreach ($payment_methods as $key => $item)
+                        ' Bank Transfer - BCA', 'Bank Transfer - BNI' , 'Virtual Account BCA' , 'QRIS' , 'Dana' , ]; @endphp @foreach ($payment_methods as $key=> $item)
                         <label for="payment_method_{{ $key }}" class="flex w-full p-2 text-sm bg-white border border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400">
                             <input type="radio" name="hs-vertical-radio-in-form" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="payment_method_{{ $key }}">
                             <span class="text-sm text-gray-500 ms-3 dark:text-neutral-400">{{ $item }}</span>
@@ -141,7 +151,8 @@
                         </li>
                     </ul>
                     <!-- End List Group -->
-                    <button type="button" onclick="window.location.href='/order-confirmed'" class="inline-flex items-center justify-center w-full px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                    <button type="button" wire:click="placeAnOrder" class="inline-flex items-center justify-center w-full px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+
                         Place an Order
                     </button>
                 </div>
